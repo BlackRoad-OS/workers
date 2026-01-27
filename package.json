@@ -1,0 +1,46 @@
+{
+  "name": "@blackroad-os/workers",
+  "version": "1.0.0",
+  "description": "🛣️ BlackRoad OS Cloudflare Workers - Edge computing infrastructure for the BlackRoad ecosystem",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "vitest",
+    "test:ci": "vitest run",
+    "lint": "eslint src --ext .ts",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "typecheck": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BlackRoad-OS/workers.git"
+  },
+  "keywords": [
+    "blackroad",
+    "cloudflare",
+    "workers",
+    "edge-computing",
+    "serverless",
+    "blackroad-os"
+  ],
+  "author": "BlackRoad OS, Inc.",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BlackRoad-OS/workers/issues"
+  },
+  "homepage": "https://github.com/BlackRoad-OS/workers#readme",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20250106.0",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "eslint": "^8.56.0",
+    "prettier": "^3.2.4",
+    "typescript": "^5.3.3",
+    "vitest": "^1.2.1",
+    "wrangler": "^3.98.0"
+  },
+  "dependencies": {
+    "hono": "^4.0.0"
+  }
+}
