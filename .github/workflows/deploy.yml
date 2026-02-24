@@ -49,10 +49,12 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020  # v4
         with:
           node-version: '20'
+      - name: Install Wrangler
+        run: npm install -g wrangler@latest
       - name: Deploy ${{ matrix.worker }}
         run: |
           cd domains/${{ matrix.worker }}
-          npx wrangler@latest deploy
+          wrangler deploy
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: 848cf0b18d51e0170e0d1537aec3505a
