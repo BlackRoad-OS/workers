@@ -106,11 +106,12 @@ export function page(title, eyebrow, subtitle, body, navLinks = []) {
 }
 
 export async function ghFetch(env, endpoint) {
-  if (!env.GITHUB_TOKEN) return null;
+  const token = env.BR_GITHUB_TOKEN || env.GITHUB_TOKEN;
+  if (!token) return null;
   try {
     const r = await fetch(`https://api.github.com${endpoint}`, {
       headers: {
-        "Authorization": `Bearer ${env.GITHUB_TOKEN}`,
+        "Authorization": `Bearer ${token}`,
         "Accept": "application/vnd.github+json",
         "X-GitHub-Api-Version": "2022-11-28",
         "User-Agent": "BlackRoad-OS-Worker/2.0",
