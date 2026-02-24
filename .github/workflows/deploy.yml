@@ -43,7 +43,7 @@ jobs:
       matrix:
         worker: ${{ fromJson(needs.detect-changes.outputs.workers) }}
       fail-fast: false
-      max-parallel: 5
+      max-parallel: 3
     steps:
       - uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5  # v4
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020  # v4
@@ -54,7 +54,11 @@ jobs:
       - name: Deploy ${{ matrix.worker }}
         run: |
           cd domains/${{ matrix.worker }}
-          wrangler deploy
+          for i in 1 2 3; do
+            wrangler deploy && break
+            echo "Attempt $i failed, waiting 15s..."
+            sleep 15
+          done
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: 848cf0b18d51e0170e0d1537aec3505a
